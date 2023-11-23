@@ -71,3 +71,18 @@ function enviarMensagem() {
             console.error('Erro:', error);
         });
 }
+document.addEventListener('DOMContentLoaded', function () {
+    const chatItems = document.querySelectorAll('.chat-item');
+    const contactName = document.querySelector('.contact-name');
+    const messageContainer = document.querySelector('.message-container');
+
+    chatItems.forEach(item => {
+        item.addEventListener('click', function () {
+            // Limpar o conteúdo da área de mensagens
+            messageContainer.innerHTML = '';
+
+            // Atualizar o nome do contato na barra de título
+            contactName.textContent = '* ' + item.textContent.trim() + ' *';
+        });
+    });
+});

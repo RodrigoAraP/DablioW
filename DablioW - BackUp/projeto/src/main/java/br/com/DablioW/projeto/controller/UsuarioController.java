@@ -1,6 +1,7 @@
 package br.com.DablioW.projeto.controller;
 
 import br.com.DablioW.projeto.DAO.IUsuario;
+import br.com.DablioW.projeto.model.Mensagem;
 import br.com.DablioW.projeto.model.Usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,4 +59,5 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Nome de usuário ou senha inválidos.");
         }
     }
+
 }
