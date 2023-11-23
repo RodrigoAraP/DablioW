@@ -10,7 +10,7 @@ A estrutura de dados do projeto inclui as classes `Usuario` e `Mensagem`, mapead
 
 ### UML - Diagrama de Classe
 
-![Diagrama de Classe](.png)
+![Diagrama de Classe](UML.png)
 
 O diagrama de classe representa a estrutura do projeto, destacando as principais entidades, seus atributos e relacionamentos. A classe abstrata `Usuario` é estendida pela classe concreta `Mensagem`, demonstrando o uso de herança.
 
