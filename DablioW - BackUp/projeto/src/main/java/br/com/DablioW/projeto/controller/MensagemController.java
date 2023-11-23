@@ -33,4 +33,5 @@ public class MensagemController {
         Mensagem mensagemNova = mensagemDAO.save(mensagem);
         return ResponseEntity.status(HttpStatus.CREATED).body(mensagemNova);
     }
+
 }

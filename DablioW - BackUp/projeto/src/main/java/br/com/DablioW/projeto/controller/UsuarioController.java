@@ -2,13 +2,12 @@ package br.com.DablioW.projeto.controller;
 
 import br.com.DablioW.projeto.DAO.IUsuario;
 import br.com.DablioW.projeto.model.Usuario;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,47 +37,25 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    public Optional<Usuario> excluirUsuario (@PathVariable Integer id){
-        Optional<Usuario> usuario = dao.findAllById(id);
-        dao.deleteById(id);
-        return usuario;
-    }
+    public ResponseEntity<String> excluirUsuario(@PathVariable Integer id) {
+        Optional<Usuario> usuarioOptional = dao.findById(id);
 
-    
-
-
-
-    @PostMapping("/login")
-    public String login(@RequestBody Usuario usuario) {
-        String nome = usuario.getNome();
-        String senha = usuario.getSenha();
-
-        // Validar usuário no banco de dados
-        if (validarUsuario(nome, senha)) {
-            return "Login bem-sucedido!";
+        if (usuarioOptional.isPresent()) {
+            dao.deleteById(id);
+            return ResponseEntity.ok("Usuário excluído com sucesso.");
         } else {
-            return "Nome de usuário ou senha inválidos.";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado.");
         }
     }
 
-    private boolean validarUsuario(String nome, String senha) {
-        // Substitua as credenciais do banco de dados conforme necessário
-        String url = "jdbc:mysql://localhost:3306/dabliow?useTimezone=true&serverTimezone=UTC";
-        String user = "root";
-        String password = "dabliow";
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody Usuario usuario) {
+        Optional<Usuario> usuarioOptional = dao.findByNomeAndSenha(usuario.getNome(), usuario.getSenha());
 
-        try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            String query = "SELECT * FROM usuario WHERE nome = ? AND senha = ?";
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setString(1, nome);
-                statement.setString(2, senha);
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    return resultSet.next();
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+        if (usuarioOptional.isPresent()) {
+            return ResponseEntity.ok("Login bem-sucedido!");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Nome de usuário ou senha inválidos.");
         }
     }
 }

@@ -36,8 +36,7 @@ formulario.addEventListener('submit', function (event) {
     cadastrar();
     limpar();
 })
-
-function toggleForm() {
+function toggleForm1() {
     // Obtém o nome da página atual
     const currentPage = window.location.pathname.split('/').pop();
 
@@ -47,3 +46,13 @@ function toggleForm() {
     // Redireciona para a próxima página
     window.location.href = nextPage;
 }
+
+function toggleForm(){
+
+    const currentPage = window.location.pathname.split('/').pop();
+
+    const nextPage = currentPage === 'pageInicial.html' ? 'login.html' : 'pageInicial.html';
+
+    window.location.href = nextPage;
+}
+

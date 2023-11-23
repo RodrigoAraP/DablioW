@@ -24,20 +24,21 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity <Usuario> criarUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario) {
         Usuario usuarioNovo = dao.save(usuario);
         return ResponseEntity.status(201).body(usuarioNovo);
     }
 
     @PutMapping
-    public ResponseEntity <Usuario> editarUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> editarUsuario(@RequestBody Usuario usuario) {
         Usuario usuarioNovo = dao.save(usuario);
         return ResponseEntity.status(201).body(usuarioNovo);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> excluirUsuario (@PathVariable Integer id){
+    public ResponseEntity<?> excluirUsuario(@PathVariable Integer id) {
         dao.deleteById(id);
         return ResponseEntity.status(204).build();
     }
+
 }

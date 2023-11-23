@@ -64,12 +64,22 @@ function toggleForm() {
     window.location.href = nextPage;
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const loginButton = document.getElementById('Btnlogin');
+
+    if (loginButton) {
+        loginButton.addEventListener('click', function() {
+            login();
+        });
+    }
+});
+
 function login() {
-    var nome = document.getElementById("nome").value;
-    var senha = document.getElementById("senha").value;
+    var nome = document.querySelector(".nome").value;
+    var senha = document.querySelector(".senha").value;
 
     // Enviar solicitação para o servidor Spring Boot
-    fetch('http://localhost:8080/login', {
+    fetch('http://localhost:8080/usuarios/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -79,12 +89,16 @@ function login() {
             senha: senha 
         }),
     })
-    .then(response => response.text())
-    .then(data => {
-        alert(data);
+    .then(response => {
+        if(response.ok) {
+            window.location.href = 'pagInicial.html'; // Redireciona para a página inicial em caso de sucesso
+        } else {
+            alert('Nome de usuário ou senha inválidos.');
+        }
     })
     .catch((error) => {
         console.error('Erro:', error);
     });
 }
+
 
