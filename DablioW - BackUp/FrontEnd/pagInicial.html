@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/imagens/logoDablioW.webp">
     <link rel="stylesheet" href="Home.style.css">
     <script src="./mensagem.js" defer></script>
+    <script src="./script.js" defer></script>
+    
     <title>DablioW</title>
 </head>
 <body>
     <div class="whatsapp-container">
         <div class="chat-list">
-            <div class="chat-search">
-                <input type="text" placeholder="Pesquisar amigos">
-            </div>
             <div class="chat-item">
                 <div class="contact-thumbnail"></div>
                 Thales Augusto
@@ -32,7 +32,7 @@
             <!-- add mais contato -->
             
             <!--  sair da conta -->
-            <div class="logout-btn" onclick="toggleForm('')">Sair da Conta</div>
+            <button class="logout-btn" onclick="toggleForm()">Sair da Conta</button>
         </div>
 
         <div class="chat">
@@ -56,10 +56,7 @@
             </div>
 
             <!-- add amigo e remover amigo -->
-            <div class="friend-buttons">
-                <button class="add-friend-btn">Adicionar Amigo</button>
-                <button class="remove-friend-btn">Remover Amigo</button>
-            </div>
+            
         </div>
     </div>
 </body>

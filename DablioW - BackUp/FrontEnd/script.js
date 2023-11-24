@@ -52,14 +52,8 @@ function toggleForm() {
 
     const currentPage = window.location.pathname.split('/').pop();
 
-    let nextPage;
-    if (currentPage === 'pagInicial.html') {
-        nextPage = 'login.html';
-    } else {
-        if (condicao) {
-            nextPage = 'pagInicial.html';
-        }
-    }
+    const nextPage = currentPage === 'pagIncial.html' ? 'login.html' : 'login.html';
+
 
     window.location.href = nextPage;
 }

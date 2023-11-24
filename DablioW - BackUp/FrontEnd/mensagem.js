@@ -1,21 +1,5 @@
-//const Imensagem = document.querySelector(".mensagem");
-const formulario = document.querySelector("div");
 
-/*
-function mensagem() {
-    fetch("http://localhost:8080/mensagens", {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify({
-            mensagem: Imensagem.value
-        })
-    })
-        .then(function (res) { console.log(res) })
-        .catch(function (res) { console.log(res) });
-}*/
+const formulario = document.querySelector("div");
 
 
 function limpar() {
@@ -27,6 +11,19 @@ formulario.addEventListener('submit', function (event) {
     mensagem();
     limpar();
 });
+
+
+function toggleForm() {
+    // Obtém o nome da página atual
+    const currentPage = window.location.pathname.split('/').pop();
+
+    // Determina a página para a qual deseja navegar
+    const nextPage = currentPage === 'pagInicial.html' ? 'login.html' : 'pagInicial.html';
+
+    // Redireciona para a próxima página
+    window.location.href = nextPage;
+}
+
 
 
 
